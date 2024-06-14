@@ -1,0 +1,98 @@
+import React, { useEffect } from "react";
+import { useDisclosure } from "@nextui-org/react";
+import { Toaster } from "react-hot-toast";
+//import CogTooth from "#/assets/cog-tooth";
+//import Errors from "#/components/Errors";
+import { Container, Orientation } from "#/components/Resizable";
+import Workspace from "#/components/Workspace";
+import LoadPreviousSessionModal from "#/components/modals/load-previous-session/LoadPreviousSessionModal";
+import SettingsModal from "#/components/modals/settings/SettingsModal";
+import AgentControlBar from "./components/AgentControlBar";
+import AgentStatusBar from "./components/AgentStatusBar";
+import Terminal from "./components/terminal/Terminal";
+import Session from "#/services/session";
+import { getToken } from "#/services/auth";
+import { settingsAreUpToDate } from "#/services/settings";
+import ChatInterface from "./components/chat/ChatInterface";
+
+interface Props {
+  setSettingOpen: (isOpen: boolean) => void;
+}
+
+const Controls: React.FC<Props> = ({ setSettingOpen }) => (
+  <div className="flex w-full p-4 bg-neutral-900 items-center shrink-0 justify-between">
+    <div className="flex items-center gap-4">
+      <AgentControlBar />
+    </div>
+    <AgentStatusBar />
+    <div
+      className="cursor-pointer hover:opacity-80 transition-all"
+      onClick={() => setSettingOpen(true)}
+    >
+      <CogTooth />
+    </div>
+  </div>
+);
+
+const App: React.FC = () => {
+  const {
+    isOpen: settingsModalIsOpen,
+    onOpen: onSettingsModalOpen,
+    onOpenChange: onSettingsModalOpenChange,
+  } = useDisclosure();
+
+  const {
+    isOpen: loadPreviousSessionModalIsOpen,
+    onOpen: onLoadPreviousSessionModalOpen,
+    onOpenChange: onLoadPreviousSessionModalOpenChange,
+  } = useDisclosure();
+
+  useEffect(() => {
+    if (!settingsAreUpToDate()) {
+      onSettingsModalOpen();
+    } else if (getToken()) {
+      onLoadPreviousSessionModalOpen();
+    } else {
+      Session.startNewSession();
+    }
+  }, []); // Only run once on mount
+
+  return (
+    <div className="h-screen w-screen flex flex-col">
+      <div className="flex grow bg-neutral-900 text-white min-h-0">
+        <Container
+          orientation={Orientation.HORIZONTAL}
+          className="grow h-full min-h-0 min-w-0 px-3 pt-3"
+          initialSize={500}
+          firstChild={<ChatInterface />}
+          firstClassName="min-w-[500px] rounded-xl overflow-hidden border border-neutral-600"
+          secondChild={
+            <Container
+              orientation={Orientation.VERTICAL}
+              className="grow h-full min-h-0 min-w-0"
+              initialSize={window.innerHeight - 300}
+              firstChild={<Workspace />}
+              firstClassName="min-h-72 rounded-xl border border-neutral-600 bg-neutral-800 flex flex-col overflow-hidden"
+              secondChild={<Terminal />}
+              secondClassName="min-h-72 rounded-xl border border-neutral-600 bg-neutral-800"
+            />
+          }
+          secondClassName="flex flex-col overflow-hidden grow min-w-[500px]"
+        />
+      </div>
+      <Controls setSettingOpen={onSettingsModalOpen} />
+      <SettingsModal
+        isOpen={settingsModalIsOpen}
+        onOpenChange={onSettingsModalOpenChange}
+      />
+      <LoadPreviousSessionModal
+        isOpen={loadPreviousSessionModalIsOpen}
+        onOpenChange={onLoadPreviousSessionModalOpenChange}
+      />
+      <Errors />
+      <Toaster />
+    </div>
+  );
+};
+
+export default App;
