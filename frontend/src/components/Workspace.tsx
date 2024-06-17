@@ -3,7 +3,7 @@ import { Tab, Tabs } from "@nextui-org/react";
 import { IoIosGlobe } from "react-icons/io";
 import { VscCode, VscListOrdered } from "react-icons/vsc";
 import { useSelector } from "react-redux";
-import { initialState as initialBrowserState } from "#/state/browserSlice";
+import { initialState  as initialBrowserState} from "#/state/browserSlice";
 import { initialState as initialCodeState } from "#/state/codeSlice";
 import { RootState } from "#/store";
 import { TabOption, TabType } from "#/types/TabOption";

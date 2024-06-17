@@ -6,7 +6,7 @@ interface BrowserState {
 }
 
 const initialState: BrowserState = {
-  url: "https://example.com", // Placeholder URL
+  url: "https://github.com/arhansuba/Levin", // Placeholder URL
   screenshotSrc: "", // Placeholder for screenshot source
 };
 
