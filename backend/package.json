@@ -1,0 +1,34 @@
+{
+  "name": "levin-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "deploy-ipfs": "ts-node src/ipfsStorage.ts",
+    "deploy-serper": "ts-node src/serperSearch.ts",
+    "deploy-bearly": "ts-node src/bearlyAIGenerator.ts",
+    "deploy-agent": "ts-node src/agent.ts",
+    "deploy-chat": "ts-node src/chat.ts",
+    "deploy-chat-vision": "ts-node src/chat_vision.ts"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ethers": "^6.13.1",
+    "ts-node": "^10.2.1"
+  },
+  "description": "## Overview",
+  "devDependencies": {
+    "@types/node": "^20.14.5",
+    "typescript": "^5.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhansuba/Levin.git"
+  },
+  "author": "arhan subaşı",
+  "bugs": {
+    "url": "https://github.com/arhansuba/Levin/issues"
+  },
+  "homepage": "https://github.com/arhansuba/Levin#readme"
+}

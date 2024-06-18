@@ -1,0 +1,36 @@
+[
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "query",
+          "type": "string"
+        }
+      ],
+      "name": "performSearch",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "query",
+          "type": "string"
+        }
+      ],
+      "name": "getSearchResult",
+      "outputs": [
+        {
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+  

@@ -1,0 +1,40 @@
+[
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "action",
+          "type": "string"
+        },
+        {
+          "name": "params",
+          "type": "bytes[]"
+        }
+      ],
+      "name": "performAction",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "actionId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getActionResult",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+  
