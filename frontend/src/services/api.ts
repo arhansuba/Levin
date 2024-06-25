@@ -1,6 +1,18 @@
 import { getToken } from "./auth";
 import toast from "#/utils/toast";
+import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
+export const startChat = async (message: string) => {
+  const response = await axios.post(`${API_URL}/startChat`, { message });
+  return response.data;
+};
+
+export const getMessages = async (chatId: number) => {
+  const response = await axios.get(`${API_URL}/getMessages`, { params: { chatId } });
+  return response.data;
+};
 const WAIT_FOR_AUTH_DELAY_MS = 500;
 
 export async function request(

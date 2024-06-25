@@ -13,6 +13,7 @@ import { addUserMessage, addAssistantMessage } from "#/state/chatSlice";
 import { useScrollToBottom } from "#/hooks/useScrollToBottom";
 import Session from "#/services/session";
 import { getToken } from "#/services/auth";
+import { startChat, getMessages } from "../../services/api";
 
 interface ScrollButtonProps {
   onClick: () => void;
@@ -41,7 +42,7 @@ function ScrollButton({
   );
 }
 
-function ChatInterface() {
+const ChatInterface = () => {
   const dispatch = useDispatch();
   const { messages } = useSelector((state: RootState) => state.chat);
   const { curAgentState } = useSelector((state: RootState) => state.agent);
@@ -63,11 +64,19 @@ function ChatInterface() {
     if (curAgentState === AgentState.INIT && messages.length === 0) {
       dispatch(addAssistantMessage("Initial message")); // Replace with your specific message
     }
+
+    const fetchMessages = async () => {
+      const chatMessages = await getMessages(1); // Replace with dynamic chat ID
+      // Assuming addAssistantMessage adds messages to the Redux store
+      chatMessages.forEach((msg: { content: string; }) => dispatch(addAssistantMessage(msg.content)));
+    };
+    fetchMessages();
   }, [curAgentState, dispatch, messages.length]);
 
-  const handleSendMessage = (content: string) => {
+  const handleSendMessage = async (content: string) => {
     dispatch(addUserMessage(content));
-    sendChatMessage(content);
+    const newMessage = await startChat(content);
+    dispatch(addAssistantMessage(newMessage.content));
   };
 
   const handleSendContinueMsg = () => {
@@ -104,18 +113,18 @@ function ChatInterface() {
       <div className="relative">
         <div className="absolute bottom-2 left-0 right-0 flex items-center justify-center">
           {!hitBottom &&
-            ScrollButton({
-              onClick: scrollDomToBottom,
-              icon: <VscArrowDown className="inline mr-2 w-3 h-3" />,
-              label: "To Bottom", // Replace with your specific label
-            })}
+            <ScrollButton
+              onClick={scrollDomToBottom}
+              icon={<VscArrowDown className="inline mr-2 w-3 h-3" />}
+              label="To Bottom"
+            />}
           {curAgentState === AgentState.AWAITING_USER_INPUT &&
             hitBottom &&
-            ScrollButton({
-              onClick: handleSendContinueMsg,
-              icon: <RiArrowRightDoubleLine className="inline mr-2 w-3 h-3" />,
-              label: "Continue Message", // Replace with your specific label
-            })}
+            <ScrollButton
+              onClick={handleSendContinueMsg}
+              icon={<RiArrowRightDoubleLine className="inline mr-2 w-3 h-3" />}
+              label="Continue Message"
+            />}
         </div>
 
         {feedbackShared !== messages.length && messages.length > 3 && (
