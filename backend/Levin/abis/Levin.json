@@ -1,0 +1,425 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "initialOracleAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "initialIPFSAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "initialSerperAPIAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "initialBearlyAPIAddress",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newOracleAddress",
+                "type": "address"
+            }
+        ],
+        "name": "OracleAddressUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newIPFSAddress",
+                "type": "address"
+            }
+        ],
+        "name": "IPFSAddressUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newSerperAPIAddress",
+                "type": "address"
+            }
+        ],
+        "name": "SerperAPIAddressUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newBearlyAPIAddress",
+                "type": "address"
+            }
+        ],
+        "name": "BearlyAPIAddressUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "chatId",
+                "type": "uint256"
+            }
+        ],
+        "name": "ChatCreated",
+        "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newOracleAddress",
+                "type": "address"
+            }
+        ],
+        "name": "setOracleAddress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newIPFSAddress",
+                "type": "address"
+            }
+        ],
+        "name": "setIPFSAddress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newSerperAPIAddress",
+                "type": "address"
+            }
+        ],
+        "name": "setSerperAPIAddress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newBearlyAPIAddress",
+                "type": "address"
+            }
+        ],
+        "name": "setBearlyAPIAddress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "message",
+                "type": "string"
+            }
+        ],
+        "name": "startChat",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "chatId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "code",
+                "type": "string"
+            }
+        ],
+        "name": "deployContract",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "chatId",
+                "type": "uint256"
+            }
+        ],
+        "name": "analyzeCode",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "chatId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "code",
+                "type": "string"
+            },
+            {
+                "internalType": "uint32",
+                "name": "num_documents",
+                "type": "uint32"
+            }
+        ],
+        "name": "createKnowledgeBaseQuery",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "callbackId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "response",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "errorMessage",
+                "type": "string"
+            }
+        ],
+        "name": "onOracleKnowledgeBaseQueryResponse",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "callbackId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "response",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "errorMessage",
+                "type": "string"
+            }
+        ],
+        "name": "onOracleLlmResponse",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "promptCallbackId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "config",
+                "type": "string"
+            }
+        ],
+        "name": "createOpenAiLlmCall",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "callbackId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "response",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "errorMessage",
+                "type": "string"
+            }
+        ],
+        "name": "onOracleOpenAiLlmResponse",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "chatRunsCount",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "chatRuns",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "messagesCount",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "oracleAddress",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ipfsAddress",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "serperAPIAddress",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "bearlyAPIAddress",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]

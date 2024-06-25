@@ -14,6 +14,8 @@ import Session from "#/services/session";
 import { getToken } from "#/services/auth";
 import { settingsAreUpToDate } from "#/services/settings";
 import ChatInterface from "./components/chat/ChatInterface";
+import CogTooth from "./assets/cog-tooth";
+import Errors from "./components/Errors";
 
 interface Props {
   setSettingOpen: (isOpen: boolean) => void;
